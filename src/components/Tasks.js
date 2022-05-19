@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import Task from "./Task";
 
-const Tasks = ({ tasks }) => {
+const Tasks = ({ tasks, deleteTask, setTasks }) => {
   // Task: Toggle Show Reminder
+  // Task: if no tasks in the task list, show a statement.
 
   return (
     <div>
       <h2>Your Tasklist </h2>
       {tasks.map((task) => {
         return (
-          <div key={task.id} className="task">
-            <h3>{task.text}</h3>
-            <p>{task.date}</p>
-          </div>
+          <Task
+            key={task.id}
+            task={task}
+            deleteTask={deleteTask}
+            setTasks={setTasks}
+          />
         );
       })}
     </div>

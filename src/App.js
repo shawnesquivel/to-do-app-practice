@@ -29,7 +29,7 @@ const App = () => {
       id: 3,
       text: "Water Your Plants",
       date: "June 21 @ 2pm",
-      reminder: false,
+      reminder: true,
     },
     {
       id: 4,
@@ -39,10 +39,18 @@ const App = () => {
     },
   ]);
 
+  // Delete Task
+  const deleteTask = (id) => {
+    console.log(`Task ${id} has been deleted `);
+    // const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(tasks.filter((task) => task.id !== id));
+    console.log(tasks);
+  };
+
   return (
     <div className="container">
       <Header showForm={showForm} />
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} deleteTask={deleteTask} setTasks={setTasks} />
     </div>
   );
 };
