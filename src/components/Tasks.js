@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import Task from "./Task";
 
-const Tasks = ({ tasks, deleteTask, setTasks }) => {
-  // Task: Toggle Show Reminder
-  // Task: if no tasks in the task list, show a statement.
+const Tasks = ({ tasks, deleteTask, setTasks, toggleReminder }) => {
+  // Task: if no tasks in the task list, show a statement. -- DONE
 
   return (
     <div>
       <h2>Your Tasklist </h2>
-      {tasks.map((task) => {
-        return (
-          <Task
-            key={task.id}
-            task={task}
-            deleteTask={deleteTask}
-            setTasks={setTasks}
-          />
-        );
-      })}
+      {tasks.length !== 0 ? (
+        tasks.map((task) => {
+          return (
+            <Task
+              key={task.id}
+              task={task}
+              deleteTask={deleteTask}
+              setTasks={setTasks}
+              toggleReminder={toggleReminder}
+            />
+          );
+        })
+      ) : (
+        <>
+          <p>All tasks are done, relax!</p>
+        </>
+      )}
     </div>
   );
 };

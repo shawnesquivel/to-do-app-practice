@@ -4,12 +4,11 @@ import PropTypes from "prop-types";
 
 // task: pass down title as a prop
 
-const Header = ({ title, showForm }) => {
+const Header = ({ title, addTaskForm }) => {
   return (
     <div className="header">
       <h1>{title}</h1>
-      <Button color="green" showForm={showForm} />
-      <Button color="red" text="Don't Click" />
+      <Button color="green" showForm={addTaskForm} />
     </div>
   );
 };

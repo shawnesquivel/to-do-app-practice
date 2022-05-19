@@ -8,9 +8,17 @@ import { ImCross } from "react-icons/im";
 //  - how do I send the task list upwards?
 // (4) The component is re-rendered
 
-const Task = ({ task, tasks, deleteTask, setTasks }) => {
+// Task: Show Reminder
+// (1) Check if the task.reminder
+// (2) If true, then add the className=reminder
+
+const Task = ({ task, deleteTask, toggleReminder }) => {
   return (
-    <div key={task.id} className="task">
+    <div
+      key={task.id}
+      className={`task ${task.reminder ? "reminder" : ""}`}
+      onClick={() => toggleReminder(task.id)}
+    >
       <h3>
         {task.text}
 

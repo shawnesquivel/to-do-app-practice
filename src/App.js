@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import AddTask from "./components/AddTask";
 
 // This controls everything
 
-//
-
-const showForm = (e) => {
-  console.log(e);
-  console.log("show the form");
-};
-
 const App = () => {
+  const [showForm, setShowForm] = useState(false);
+
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -47,10 +43,46 @@ const App = () => {
     console.log(tasks);
   };
 
+  // Show Add Task Form
+  const addTaskForm = () => {
+    setShowForm(!showForm);
+  };
+
+  // Add a New Task
+  const addTask = (text, date, reminder) => {
+    setTasks([
+      ...tasks,
+      {
+        id: tasks.length + 1,
+        text: text,
+        date: date,
+        reminder: reminder,
+      },
+    ]);
+  };
+
+  // Toggle the Reminder
+
+  const toggleReminder = (id) => {
+    // const taskToggle = tasks.find((task) => task.id === id);
+    // Go through each task, and edit the reminder property if the task id matches
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      )
+    );
+  };
+
   return (
     <div className="container">
-      <Header showForm={showForm} />
-      <Tasks tasks={tasks} deleteTask={deleteTask} setTasks={setTasks} />
+      <Header addTaskForm={addTaskForm} />
+      {showForm ? <AddTask addTask={addTask} showForm={showForm} /> : ""}
+      <Tasks
+        tasks={tasks}
+        deleteTask={deleteTask}
+        setTasks={setTasks}
+        toggleReminder={toggleReminder}
+      />
     </div>
   );
 };
