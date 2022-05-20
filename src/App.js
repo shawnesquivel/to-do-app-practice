@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
@@ -8,32 +8,7 @@ import AddTask from "./components/AddTask";
 const App = () => {
   const [showForm, setShowForm] = useState(false);
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Appointment with Dr. Lang",
-      date: "May 24 @ 5PM",
-      reminder: true,
-    },
-    {
-      id: 2,
-      text: "Date Night with Shay",
-      date: "May 30 @ 2pm",
-      reminder: false,
-    },
-    {
-      id: 3,
-      text: "Water Your Plants",
-      date: "June 21 @ 2pm",
-      reminder: true,
-    },
-    {
-      id: 4,
-      text: "Coding Interview w/ Kevin @ Hexa Exchange",
-      date: "May 20 @ 5PM",
-      reminder: true,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   // Delete Task
   const deleteTask = (id) => {
@@ -75,7 +50,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <Header addTaskForm={addTaskForm} />
+      <Header addTaskForm={addTaskForm} showForm={showForm} />
       {showForm ? <AddTask addTask={addTask} showForm={showForm} /> : ""}
       <Tasks
         tasks={tasks}

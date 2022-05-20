@@ -17,7 +17,7 @@ const Task = ({ task, deleteTask, toggleReminder }) => {
     <div
       key={task.id}
       className={`task ${task.reminder ? "reminder" : ""}`}
-      onClick={() => toggleReminder(task.id)}
+      onDoubleClick={() => toggleReminder(task.id)}
     >
       <h3>
         {task.text}

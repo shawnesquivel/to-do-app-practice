@@ -7,6 +7,7 @@ const Tasks = ({ tasks, deleteTask, setTasks, toggleReminder }) => {
   return (
     <div>
       <h2>Your Tasklist </h2>
+      <p>~Double click to add reminder~</p>
       {tasks.length !== 0 ? (
         tasks.map((task) => {
           return (
